@@ -1,0 +1,3189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Computer Organization & Architecture | PYQ Master</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+
+      --bg: #f6f8fc;
+      --sidebar: #0f172a;
+      --primary: #2563eb;
+      --green: #10b981;
+      --red: #ef4444;
+      --orange: #f59e0b;
+
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --text: #111827;
+      --muted: #6b7280;
+
+      --shadow: 0 12px 35px rgba(0, 0, 0, .08);
+
+    }
+
+    body {
+
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow: hidden;
+
+    }
+
+    .app {
+
+      display: flex;
+      height: 100vh;
+
+    }
+
+    /* ===========================
+            SIDEBAR
+        ============================ */
+
+    aside {
+
+      width: 295px;
+      background: var(--sidebar);
+      color: white;
+
+      display: flex;
+      flex-direction: column;
+
+      overflow-y: auto;
+
+    }
+
+    .logo {
+
+      padding: 35px 28px 25px;
+
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+
+    }
+
+    .logo h1 {
+
+      font-size: 24px;
+      font-weight: 800;
+
+    }
+
+    .logo p {
+
+      margin-top: 8px;
+      font-size: 13px;
+      color: #94a3b8;
+
+    }
+
+    .menu {
+
+      padding: 22px;
+
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+    }
+
+    .menu-title {
+
+      margin-top: 14px;
+      margin-bottom: 6px;
+
+      color: #64748b;
+
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+
+    }
+
+    .nav-item {
+
+      padding: 14px 18px;
+
+      border-radius: 12px;
+
+      cursor: pointer;
+
+      transition: .25s;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      font-size: 15px;
+
+    }
+
+    .nav-item:hover {
+
+      background: rgba(255, 255, 255, .07);
+
+    }
+
+    .nav-item.active {
+
+      background: var(--primary);
+
+    }
+
+    .count {
+
+      font-size: 12px;
+
+      padding: 4px 8px;
+
+      border-radius: 30px;
+
+      background: rgba(255, 255, 255, .12);
+
+    }
+
+    /* ==========================
+            MAIN
+        =========================== */
+
+    main {
+
+      flex: 1;
+
+      overflow-y: auto;
+
+      padding: 45px;
+
+    }
+
+    .top {
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+
+      margin-bottom: 35px;
+
+    }
+
+    .heading h2 {
+
+      font-size: 34px;
+      font-weight: 800;
+
+    }
+
+    .heading p {
+
+      margin-top: 8px;
+      color: var(--muted);
+
+    }
+
+    /* ==========================
+            SEARCH
+        =========================== */
+
+    .search-box {
+
+      width: 420px;
+
+      position: relative;
+
+    }
+
+    .search {
+
+      width: 100%;
+
+      padding: 16px 20px;
+
+      border: 1px solid var(--border);
+
+      border-radius: 14px;
+
+      background: white;
+
+      outline: none;
+
+      font-size: 15px;
+
+    }
+
+    .search:focus {
+
+      border-color: var(--primary);
+
+    }
+
+    /* ==========================
+            FILTER BAR
+        =========================== */
+
+    .toolbar {
+
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+
+      margin-bottom: 30px;
+
+    }
+
+    .chip {
+
+      padding: 10px 18px;
+
+      border-radius: 30px;
+
+      background: white;
+
+      border: 1px solid var(--border);
+
+      cursor: pointer;
+
+      transition: .25s;
+
+      font-size: 14px;
+
+    }
+
+    .chip:hover {
+
+      background: #eef4ff;
+
+      border-color: var(--primary);
+
+    }
+
+    .chip.active {
+
+      background: var(--primary);
+      color: white;
+
+      border-color: var(--primary);
+
+    }
+
+    /* ==========================
+            GRID
+        =========================== */
+
+    .grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(auto-fill, minmax(300px, 1fr));
+
+      gap: 22px;
+
+    }
+
+    /* ==========================
+            CARD
+        =========================== */
+
+    .card {
+
+      background: var(--card);
+
+      border: 1px solid var(--border);
+
+      border-radius: 18px;
+
+      padding: 24px;
+
+      box-shadow: var(--shadow);
+
+      transition: .25s;
+
+    }
+
+    .card:hover {
+
+      transform: translateY(-4px);
+
+    }
+
+    .badges {
+
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+
+      margin-bottom: 16px;
+
+    }
+
+    .badge {
+
+      padding: 5px 10px;
+
+      border-radius: 25px;
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+      letter-spacing: .4px;
+
+    }
+
+    .unit {
+
+      background: #dbeafe;
+      color: #1d4ed8;
+
+    }
+
+    .easy {
+
+      background: #dcfce7;
+      color: #166534;
+
+    }
+
+    .medium {
+
+      background: #fef3c7;
+      color: #92400e;
+
+    }
+
+    .hard {
+
+      background: #fee2e2;
+      color: #991b1b;
+
+    }
+
+    .repeat {
+
+      background: #fef2f2;
+      color: #dc2626;
+
+    }
+
+    .qno {
+
+      color: var(--primary);
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      margin-bottom: 10px;
+
+    }
+
+    .question {
+
+      font-size: 16px;
+
+      line-height: 1.7;
+
+      font-weight: 600;
+
+      margin-bottom: 24px;
+
+    }
+
+    .footer {
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      border-top: 1px solid var(--border);
+
+      padding-top: 15px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+
+    }
+
+    /* ==========================
+            EMPTY
+        =========================== */
+
+    .empty {
+
+      display: none;
+
+      text-align: center;
+
+      margin-top: 120px;
+
+      color: var(--muted);
+
+    }
+
+    .empty h2 {
+
+      margin-bottom: 12px;
+
+    }
+
+    /* ==========================
+            RESPONSIVE
+        =========================== */
+
+    /* ==========================
+            TOP-LEFT WRAPPER
+        =========================== */
+
+    .top-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    /* ==========================
+            HAMBURGER BUTTON
+        =========================== */
+
+    .hamburger {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 46px;
+      height: 46px;
+      background: white;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .06);
+      flex-shrink: 0;
+      transition: background .2s;
+      line-height: 1;
+      margin-top: 3px;
+    }
+
+    .hamburger:hover {
+      background: #f1f5f9;
+    }
+
+    /* ==========================
+            OVERLAY
+        =========================== */
+
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .5);
+      z-index: 200;
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+    }
+
+    .overlay.show {
+      display: block;
+    }
+
+    /* ==========================
+            PAYMENT MODAL
+        =========================== */
+
+    .pay-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #0d1b2e 0%, #1a3a6e 55%, #0d1b2e 100%);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+    }
+
+    .pay-box {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 52px 42px 40px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, .55);
+      position: relative;
+      animation: payIn .45s cubic-bezier(.34, 1.56, .64, 1);
+      max-height: calc(100vh - 40px);
+      overflow-y: auto;
+    }
+
+    @keyframes payIn {
+      from {
+        opacity: 0;
+        transform: scale(.88) translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .pay-top-badge {
+      position: absolute;
+      top: -17px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #f59e0b, #ef4444);
+      color: white;
+      padding: 6px 22px;
+      border-radius: 30px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      box-shadow: 0 4px 16px rgba(239, 68, 68, .35);
+    }
+
+    .pay-icon {
+      font-size: 54px;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .pay-box h2 {
+      font-size: 26px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 8px;
+      letter-spacing: -.5px;
+    }
+
+    .pay-desc {
+      color: #64748b;
+      font-size: 14px;
+      line-height: 1.65;
+      margin-bottom: 22px;
+    }
+
+    .pay-features {
+      text-align: left;
+      background: #f0f7ff;
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 22px;
+      border: 1px solid #dbeafe;
+    }
+
+    .pay-feature {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13.5px;
+      color: #374151;
+      padding: 5px 0;
+      font-weight: 500;
+    }
+
+    .pay-feature::before {
+      content: "✓";
+      color: #10b981;
+      font-weight: 800;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .pay-amount {
+      font-size: 48px;
+      font-weight: 900;
+      color: #0f172a;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+
+    .pay-amount sup {
+      font-size: 22px;
+      font-weight: 700;
+      vertical-align: super;
+    }
+
+    .pay-amount small {
+      font-size: 15px;
+      color: #94a3b8;
+      font-weight: 500;
+    }
+
+    .pay-btn {
+      width: 100%;
+      padding: 17px;
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 8px 28px rgba(37, 99, 235, .4);
+      letter-spacing: -.2px;
+    }
+
+    .pay-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 36px rgba(37, 99, 235, .5);
+    }
+
+    .pay-btn:active {
+      transform: translateY(-1px);
+    }
+
+    .pay-note {
+      margin-top: 14px;
+      font-size: 11px;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+
+    /* ==========================
+            RESPONSIVE
+        =========================== */
+
+    @media (max-width: 900px) {
+
+      aside {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 280px;
+        transform: translateX(-100%);
+        z-index: 300;
+        transition: transform .3s cubic-bezier(.4, 0, .2, 1);
+        box-shadow: 4px 0 32px rgba(0, 0, 0, .35);
+      }
+
+      aside.open {
+        transform: translateX(0);
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      main {
+        padding: 18px 16px;
+      }
+
+      .top {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      .heading h2 {
+        font-size: 22px;
+      }
+
+      .search-box {
+        width: 100%;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .pay-box {
+        padding: 44px 22px 32px;
+      }
+
+      .pay-box h2 {
+        font-size: 22px;
+      }
+
+      .pay-amount {
+        font-size: 38px;
+      }
+
+    }
+
+    @media (min-width: 901px) and (max-width: 1280px) {
+
+      main {
+        padding: 30px 32px;
+      }
+
+      .search-box {
+        width: 300px;
+      }
+
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="app">
+
+    <!-- Sidebar Overlay (mobile) -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- ===========================
+SIDEBAR
+=========================== -->
+
+    <aside>
+
+      <div class="logo">
+
+        <h1>COA PYQs</h1>
+
+        <p>
+          Computer Organization &
+          Architecture
+          Master Question Bank
+        </p>
+
+      </div>
+
+      <div class="menu">
+
+        <div class="menu-title">
+          GENERAL
+        </div>
+
+        <div class="nav-item active" data-filter="all">
+
+          <span>📚 All Questions</span>
+
+          <span class="count" id="allCount">
+            0
+          </span>
+
+        </div>
+
+        <div class="nav-item" data-filter="repeat">
+
+          <span>🔥 Most Repeated</span>
+
+          <span class="count" id="repeatCount">
+            0
+          </span>
+
+        </div>
+
+        <div class="menu-title">
+          UNITS
+        </div>
+
+        <div class="nav-item" data-filter="1">
+
+          <span>Unit 1</span>
+
+          <span class="count" id="u1">
+            0
+          </span>
+
+        </div>
+
+        <div class="nav-item" data-filter="2">
+
+          <span>Unit 2</span>
+
+          <span class="count" id="u2">
+            0
+          </span>
+
+        </div>
+
+        <div class="nav-item" data-filter="3">
+
+          <span>Unit 3</span>
+
+          <span class="count" id="u3">
+            0
+          </span>
+
+        </div>
+
+        <div class="nav-item" data-filter="4">
+
+          <span>Unit 4</span>
+
+          <span class="count" id="u4">
+            0
+          </span>
+
+        </div>
+
+        <div class="nav-item" data-filter="5">
+
+          <span>Unit 5</span>
+
+          <span class="count" id="u5">
+            0
+          </span>
+
+        </div>
+
+      </div>
+
+    </aside>
+
+    <!-- ===========================
+MAIN
+=========================== -->
+
+    <main>
+
+      <div class="top">
+
+        <div class="top-left">
+
+          <button class="hamburger" id="hamburger" aria-label="Open menu">&#9776;</button>
+
+          <div class="heading">
+
+            <h2 id="pageTitle">All Questions</h2>
+
+            <p id="pageSub">COA Previous Year Questions &mdash; Filter by Unit, Difficulty &amp; Marks</p>
+
+          </div>
+
+        </div>
+
+        <div class="search-box">
+
+          <input type="text" id="search" class="search" placeholder="&#128269; Search questions, keywords, paper...">
+
+        </div>
+
+      </div>
+
+      <div class="toolbar">
+
+        <div class="chip active" data-chip="all">
+          All
+        </div>
+
+        <div class="chip" data-chip="Easy">
+          Easy
+        </div>
+
+        <div class="chip" data-chip="Medium">
+          Medium
+        </div>
+
+        <div class="chip" data-chip="Hard">
+          Hard
+        </div>
+
+        <div class="chip" data-chip="5">
+          5 Marks
+        </div>
+
+        <div class="chip" data-chip="10">
+          10 Marks
+        </div>
+
+      </div>
+
+      <div id="grid" class="grid">
+      </div>
+
+      <div class="empty" id="empty">
+
+        <h2>
+          No Questions Found
+        </h2>
+
+        <p>
+          Try another keyword.
+        </p>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- ===========================
+  PAYMENT MODAL (outside .app to avoid flex container positioning issues)
+  =========================== -->
+  <div class="pay-overlay" id="payOverlay">
+    <div class="pay-box">
+      <div class="pay-top-badge">&#127891; STUDENT ACCESS PASS</div>
+      <span class="pay-icon">&#128218;</span>
+      <h2>COA PYQ Master</h2>
+      <p class="pay-desc">Unlock complete access to 200+ Computer Organization &amp; Architecture Previous Year
+        Questions &mdash; unit-wise, difficulty-filtered &amp; mobile friendly.</p>
+      <div class="pay-features">
+        <div class="pay-feature">200+ Curated PYQ Questions (2022&ndash;2025)</div>
+        <div class="pay-feature">Unit-wise &amp; Difficulty Filters</div>
+        <div class="pay-feature">&#128293; Most Repeated Questions Highlighted</div>
+        <div class="pay-feature">Lightning-fast Search &middot; Works on Mobile</div>
+        <div class="pay-feature">Lifetime Access &middot; No Subscription</div>
+      </div>
+      <div class="pay-amount"><sup>&#8377;</sup>10 <small>one-time</small></div>
+
+      <!-- Anchor tag (not button) so popup blocker doesn't interfere -->
+      <a class="pay-btn" id="payBtn" href="https://razorpay.me/@ujjwalsrivastava?amount=10" target="_blank"
+        rel="noopener" style="display:block; text-decoration:none;">
+        &#128275; Pay &#8377;10 via Razorpay
+      </a>
+
+      <!-- Transaction ID verification (always visible) -->
+      <div id="payStep2" style="margin-top:16px;">
+        <hr style="border:none; border-top:1px solid #e2e8f0; margin:0 0 14px 0;">
+        <p style="font-size:13px; color:#374151; font-weight:600; margin-bottom:10px; text-align:left;">&#9989; Payment
+          done? Fill in your details to get access:</p>
+        <input type="text" id="nameInput" placeholder="Apna Naam (e.g. Rahul Sharma)"
+          style="width:100%; padding:12px 14px; border:1.5px solid #d1d5db; border-radius:10px; font-size:14px; font-family:'Inter',sans-serif; outline:none; margin-bottom:8px; box-sizing:border-box;">
+        <input type="tel" id="phoneInput" placeholder="WhatsApp Number (e.g. 9876543210)"
+          style="width:100%; padding:12px 14px; border:1.5px solid #d1d5db; border-radius:10px; font-size:14px; font-family:'Inter',sans-serif; outline:none; margin-bottom:8px; box-sizing:border-box;">
+        <input type="text" id="txnInput" placeholder="Transaction ID (e.g. T2507021234567)"
+          style="width:100%; padding:12px 14px; border:1.5px solid #d1d5db; border-radius:10px; font-size:14px; font-family:'Inter',sans-serif; outline:none; margin-bottom:10px; box-sizing:border-box;">
+        <button id="verifyBtn"
+          style="width:100%; padding:14px; background:linear-gradient(135deg,#10b981,#059669); color:white; border:none; border-radius:12px; font-size:15px; font-weight:700; cursor:pointer; font-family:'Inter',sans-serif; box-shadow:0 6px 20px rgba(16,185,129,.35);">&#10003;
+          Verify &amp; Get Access</button>
+        <p style="margin-top:8px; font-size:11px; color:#94a3b8;">Naam, WhatsApp number aur Transaction ID &mdash; teeno
+          required hain</p>
+      </div>
+
+      <p class="pay-note">&#128274; Secure via Razorpay &nbsp;&middot;&nbsp; One-time payment &nbsp;&middot;&nbsp;
+        Instant access</p>
+    </div>
+  </div>
+
+  <script>
+
+    // ========================================
+    // PART 2 STARTS HERE
+    // ========================================
+
+    // Paste
+
+    // const Q=[...]
+
+    // here
+    // ======================================================
+    // PASTE YOUR DATABASE HERE
+    // ======================================================
+
+    // const Q=[ ... ];
+
+    // ======================================================
+    // DOM
+    // ======================================================
+    const Q = [ // ========================== UNIT 1 : FUNCTIONAL BLOCKS OF A COMPUTER ==========================
+
+      {
+        u: 1,
+        no: "2024EvenQ1(a)(i)",
+        q: "Describe the register organization in CPU.",
+        p: "2024-25 Even",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 1,
+        no: "2024EvenQ1(a)(ii)",
+        q: "Differentiate between RISC and CISC architecture.",
+        p: "2024-25 Even",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 1,
+        no: "2024EvenQ1(b)",
+        q: "Define data manipulation instructions. Consider a processor with 16 general purpose registers using a 32-bit instruction format consisting of an opcode field, an addressing mode field, two register operand fields and a 16-bit scalar field. If 8 addressing modes are supported, determine the maximum number of unique opcodes possible for every addressing mode.",
+        p: "2024-25 Even",
+        m: 10,
+        d: "Hard"
+      },
+
+      {
+        u: 1,
+        no: "2024EvenQ1(c)",
+        q: "Define stack CPU organization. Consider the statement X=(A+B)/(C*D) executed on a stack CPU where variables are stored in memory. Determine (i) the number of machine instructions required and (ii) the memory required for the program if the processor contains an 8-bit opcode and supports 64 KB memory.",
+        p: "2024-25 Even",
+        m: 10,
+        d: "Hard"
+      },
+
+      {
+        u: 1,
+        no: "2024BackQ1(a)(i)",
+        q: "Explain the concept of Bus Arbitration with an example.",
+        p: "2024-25 Back",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 1,
+        no: "2024BackQ1(a)(ii)",
+        q: "Differentiate between Logical Shift and Arithmetic Shift with suitable examples.",
+        p: "2024-25 Back",
+        m: 5,
+        d: "Easy"
+      },
+
+      {
+        u: 1,
+        no: "2024BackQ1(b)",
+        q: "Design and explain a 4-bit Arithmetic Logic Shift Unit (ALSU).",
+        p: "2024-25 Back",
+        m: 10,
+        d: "Hard"
+      },
+
+      {
+        u: 1,
+        no: "2024BackQ3(a)(i)",
+        q: "What are Addressing Modes? Explain any two common addressing modes.",
+        p: "2024-25 Back",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 1,
+        no: "2024BackQ3(b)",
+        q: "Describe the General Register Organization of a processor with instruction execution.",
+        p: "2024-25 Back",
+        m: 10,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 1,
+        no: "2023Q1(a)",
+        q: "State about parallel processing. Explain Flynn's classification.",
+        p: "2023-24",
+        m: 5,
+        d: "Medium"
+      },
+
+      {
+        u: 1,
+        no: "2023Q1(b)",
+        q: "Differentiate between Hardwired and Microprogrammed Control Unit.",
+        p: "2023-24",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 1,
+        no: "2023Q1(c)",
+        q: "An 8-bit register contains the binary value 10011100. Determine the register value after an arithmetic shift right. Starting from the initial number 10011100, determine the register value after arithmetic shift left and state whether there is an overflow.",
+        p: "2023-24",
+        m: 5,
+        d: "Medium"
+      },
+
+      {
+        u: 1,
+        no: "2023Q4(c)",
+        q: "Why are different addressing modes needed? Explain Direct, Register, Immediate, Relative and Indexed Addressing Modes with suitable examples.",
+        p: "2023-24",
+        m: 10,
+        d: "Hard",
+        repeat: true
+      },
+
+      {
+        u: 1,
+        no: "2023Q5(c)",
+        q: "Draw and explain the flowchart for the Instruction Cycle with neat diagram.",
+        p: "2023-24",
+        m: 10,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 1,
+        no: "2022Q1(a)",
+        q: "What is Bus Arbitration? Explain different types of Bus Arbitration with suitable diagram.",
+        p: "2022-23",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 1,
+        no: "2022Q1(b)",
+        q: "Discuss the importance of Instruction Format in processor organization, including the types of instructions commonly used and how they are encoded.",
+        p: "2022-23",
+        m: 5,
+        d: "Medium"
+      },
+
+      {
+        u: 1,
+        no: "2022Q1(c)",
+        q: "Discuss the advantages and disadvantages of using a RISC architecture compared to a Complex Instruction Set Computer (CISC).",
+        p: "2022-23",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+      {
+        u: 1,
+        no: "2022Q1(e)",
+        q: "Explain the concept of Parallel Processing and why it is important in Computer Architecture.",
+        p: "2022-23",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 1,
+        no: "2024BackQ2(a)(ii)",
+        q: "Explain the concept of Register Transfer and its role in the Control Unit.",
+        p: "2024-25 Back",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 1,
+        no: "2024EvenQ2(a)(i)",
+        q: "Define Control Unit in CPU.",
+        p: "2024-25 Even",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 1,
+        no: "2024EvenQ2(a)(ii)",
+        q: "Describe Address Lines, Control Lines and Data Lines in Bus Organization.",
+        p: "2024-25 Even",
+        m: 5,
+        d: "Medium"
+      },
+
+      {
+        u: 1,
+        no: "2024BackQ2(a)(i)",
+        q: "Differentiate between Hardwired Control Unit and Microprogrammed Control Unit.",
+        p: "2024-25 Back",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 1,
+        no: "2024BackQ2(b)",
+        q: "Describe the differences between Hardwired Control Unit and Microprogrammed Control Unit.",
+        p: "2024-25 Back",
+        m: 10,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 1,
+        no: "2024BackQ2(c)",
+        q: "Explain the concept of Microinstruction Sequencing in a Microprogrammed Control Unit.",
+        p: "2024-25 Back",
+        m: 10,
+        d: "Hard"
+      },
+
+      {
+        u: 1,
+        no: "2022Q3(a)",
+        q: "Explain the basic organization of a Microprogrammed Control Unit and the generation of control signals using Microprogramming.",
+        p: "2022-23",
+        m: 10,
+        d: "Hard",
+        repeat: true
+      },
+
+      {
+        u: 1,
+        no: "2022Q4(a)",
+        q: "Describe the Control Unit organization with separate Encoder and Decoder functions in a Hardwired Control Unit.",
+        p: "2022-23",
+        m: 10,
+        d: "Hard"
+      },
+
+      {
+        u: 1,
+        no: "2023Q3(c)",
+        q: "Explain in detail Multiple Bus Organization with the help of a neat diagram.",
+        p: "2023-24",
+        m: 10,
+        d: "Medium"
+      },
+
+      {
+        u: 1,
+        no: "2022Q5(a)",
+        q: "What are the different Addressing Modes commonly used in processors? Explain each addressing mode with suitable examples and describe its advantages.",
+        p: "2022-23",
+        m: 10,
+        d: "Hard",
+        repeat: true
+      }, {
+        u: 2,
+        no: "2024EvenQ2(b)",
+        q: "Explain Signed Operand Multiplication Algorithm. Consider 4-bit signed numbers (-7) × (-3) as multiplicand and multiplier. Using Booth's Multiplication Algorithm, determine the recoded multiplier and the final product.",
+        p: "2024-25 Even",
+        m: 10,
+        d: "Hard",
+        repeat: true
+      },
+
+      {
+        u: 2,
+        no: "2024EvenQ2(c)",
+        q: "Describe the advantages of the Microprogrammed Control approach over the Hardwired Control approach. A hypothetical Control Unit supports five groups of mutually exclusive control signals {G1, G2, G3, G4, G5} having {1,10,20,30,40} control signals respectively. Determine how many bits are saved using Vertical Microprogramming over Horizontal Microprogramming.",
+        p: "2024-25 Even",
+        m: 10,
+        d: "Hard",
+        repeat: true
+      },
+
+      {
+        u: 2,
+        no: "2024BackQ1(c)",
+        q: "Explain the steps involved in Booth's Multiplication Algorithm with a suitable example.",
+        p: "2024-25 Back",
+        m: 10,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 2,
+        no: "2023Q2(c)",
+        q: "Explain Floating Point Representation with a suitable example.",
+        p: "2023-24",
+        m: 5,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 2,
+        no: "2023Q5(a)",
+        q: "Show the multiplication process of (20) × (-19) using Booth's Algorithm.",
+        p: "2023-24",
+        m: 10,
+        d: "Hard",
+        repeat: true
+      },
+
+      {
+        u: 2,
+        no: "2022Q2(a)",
+        q: "Represent the decimal number (+46.5)₁₀ as a 32-bit Floating Point Binary Number.",
+        p: "2022-23",
+        m: 5,
+        d: "Hard",
+        repeat: true
+      },
+
+      {
+        u: 2,
+        no: "2022Q3(c)",
+        q: "Design a 4-bit ALU capable of performing Arithmetic, Logical and Shift operations. Also explain the difference between a Microprocessor and a Microprogram.",
+        p: "2022-23",
+        m: 10,
+        d: "Hard"
+      },
+
+      {
+        u: 2,
+        no: "2024BackQ1(b)",
+        q: "Design and explain a 4-bit Arithmetic Logic Shift Unit (ALSU).",
+        p: "2024-25 Back",
+        m: 10,
+        d: "Hard"
+      },
+
+      {
+        u: 2,
+        no: "2023Q1(c)",
+        q: "An 8-bit register contains the binary value 10011100. Determine the result after Arithmetic Shift Right. Starting from the same value, determine the result after Arithmetic Shift Left and state whether overflow occurs.",
+        p: "2023-24",
+        m: 5,
+        d: "Medium"
+      },
+
+      {
+        u: 2,
+        no: "2024BackQ1(a)(ii)",
+        q: "Differentiate between Logical Shift and Arithmetic Shift with suitable examples.",
+        p: "2024-25 Back",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      }, {
+        u: 2,
+        no: "2024BackQ2(a)(i)",
+        q: "Differentiate between Hardwired Control Unit and Microprogrammed Control Unit.",
+        p: "2024-25 Back",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 2,
+        no: "2024BackQ2(a)(ii)",
+        q: "Explain the concept of Register Transfer and its role in the Control Unit.",
+        p: "2024-25 Back",
+        m: 5,
+        d: "Easy"
+      },
+
+      {
+        u: 2,
+        no: "2024BackQ2(b)",
+        q: "Describe the differences between Hardwired Control Unit and Microprogrammed Control Unit.",
+        p: "2024-25 Back",
+        m: 10,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 2,
+        no: "2024BackQ2(c)",
+        q: "Explain the concept of Microinstruction Sequencing in a Microprogrammed Control Unit.",
+        p: "2024-25 Back",
+        m: 10,
+        d: "Hard"
+      },
+
+      {
+        u: 2,
+        no: "2022Q3(a)",
+        q: "Explain the basic organization of a Microprogrammed Control Unit and explain the generation of control signals using Microprogramming.",
+        p: "2022-23",
+        m: 10,
+        d: "Hard",
+        repeat: true
+      },
+
+      {
+        u: 2,
+        no: "2022Q3(c)",
+        q: "Design a 4-bit ALU that performs Arithmetic, Logical and Shift operations. Also explain the difference between a Microprocessor and a Microprogram.",
+        p: "2022-23",
+        m: 10,
+        d: "Hard"
+      },
+
+      {
+        u: 2,
+        no: "2022Q4(a)",
+        q: "Describe the Control Unit organization with separate Encoder and Decoder functions in a Hardwired Control Unit.",
+        p: "2022-23",
+        m: 10,
+        d: "Hard"
+      },
+
+      {
+        u: 2,
+        no: "2023Q4(b)",
+        q: "Define a Microprogram Sequencer. With a neat block diagram explain the working of a Microprogram Sequencer.",
+        p: "2023-24",
+        m: 10,
+        d: "Hard",
+        repeat: true
+      },
+
+      {
+        u: 2,
+        no: "2024EvenQ2(a)(i)",
+        q: "Define the Control Unit in CPU.",
+        p: "2024-25 Even",
+        m: 5,
+        d: "Easy"
+      },
+
+      {
+        u: 2,
+        no: "2024EvenQ2(a)(ii)",
+        q: "Describe Address Lines, Control Lines and Data Lines in Bus Organization.",
+        p: "2024-25 Even",
+        m: 5,
+        d: "Medium"
+      },// ========================== UNIT 3 : PERIPHERAL DEVICES & I/O ==========================
+
+      {
+        u: 3,
+        no: "2024EvenQ3(a)(i)",
+        q: "Define USB.",
+        p: "2024-25 Even",
+        m: 5,
+        d: "Easy"
+      },
+
+      {
+        u: 3,
+        no: "2024EvenQ3(a)(ii)",
+        q: "Explain Interrupt Driven I/O Transfer.",
+        p: "2024-25 Even",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 3,
+        no: "2024EvenQ3(b)",
+        q: "Explain the working of Direct Memory Access (DMA) along with a neat block diagram.",
+        p: "2024-25 Even",
+        m: 10,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 3,
+        no: "2024EvenQ3(c)",
+        q: "Define Interrupts. Explain the role of Interrupts in Process State Transitions.",
+        p: "2024-25 Even",
+        m: 10,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 3,
+        no: "2024BackQ3(a)(i)",
+        q: "What are Addressing Modes? Explain any two common Addressing Modes.",
+        p: "2024-25 Back",
+        m: 5,
+        d: "Easy"
+      },
+
+      {
+        u: 3,
+        no: "2024BackQ3(a)(ii)",
+        q: "Explain Direct Memory Access (DMA). Discuss its advantages over Program Controlled I/O.",
+        p: "2024-25 Back",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 3,
+        no: "2024BackQ3(b)",
+        q: "Describe the General Register Organization of a Processor with Instruction Execution.",
+        p: "2024-25 Back",
+        m: 10,
+        d: "Medium"
+      },
+
+      {
+        u: 3,
+        no: "2024BackQ3(c)",
+        q: "What is an Input-Output Processor (IOP)? How does it differ from a DMA Controller?",
+        p: "2024-25 Back",
+        m: 10,
+        d: "Medium"
+      },
+
+      {
+        u: 3,
+        no: "2023Q1(e)",
+        q: "What do you mean by Asynchronous Data Transfer? Explain the Strobe Control Method.",
+        p: "2023-24",
+        m: 5,
+        d: "Easy"
+      },
+
+      {
+        u: 3,
+        no: "2023Q2(e)",
+        q: "Outline the need of I/O Addressing. Compare Memory Mapped I/O with I/O Mapped I/O.",
+        p: "2023-24",
+        m: 5,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 3,
+        no: "2023Q2(f)",
+        q: "Explain the different Modes of Data Transfer.",
+        p: "2023-24",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 3,
+        no: "2023Q3(a)(ii)",
+        q: "Write short notes on Interrupts.",
+        p: "2023-24",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 3,
+        no: "2023Q4(a)",
+        q: "Why does DMA have priority over the CPU when both request a memory transfer? Discuss Burst Transfer, Cycle Stealing and DMA Transfer.",
+        p: "2023-24",
+        m: 10,
+        d: "Hard",
+        repeat: true
+      },
+
+      {
+        u: 3,
+        no: "2022Q2(d)",
+        q: "Discuss the concept of Direct Memory Access (DMA). Explain how DMA improves I/O Performance.",
+        p: "2022-23",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 3,
+        no: "2022Q5(c)(ii)",
+        q: "Write a short note on I/O Interface.",
+        p: "2022-23",
+        m: 5,
+        d: "Easy"
+      },// ========================== UNIT 4 : PIPELINING & MULTIPROCESSOR ==========================
+
+      {
+        u: 4,
+        no: "2024EvenQ4(a)(i)",
+        q: "Differentiate between Shared Memory Multiprocessors and Distributed Memory Multiprocessors.",
+        p: "2024-25 Even",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 4,
+        no: "2024EvenQ4(a)(ii)",
+        q: "Define Synchronization.",
+        p: "2024-25 Even",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 4,
+        no: "2024EvenQ4(b)",
+        q: "Explain the concept of Pipelining. A 5-stage Instruction Pipeline has stage delays of 180 ns, 250 ns, 150 ns, 170 ns and 250 ns respectively. The delay of each inter-stage latch is 10 ns. Assuming no pipeline hazards or stalls, determine the time required to process 1000 instructions.",
+        p: "2024-25 Even",
+        m: 10,
+        d: "Hard",
+        repeat: true
+      },
+
+      {
+        u: 4,
+        no: "2024EvenQ4(c)",
+        q: "Define Pipeline Hazards. Explain the different types of Pipeline Hazards in detail.",
+        p: "2024-25 Even",
+        m: 10,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 4,
+        no: "2024BackQ5(a)(i)",
+        q: "What is Instruction Pipelining? How does it improve CPU Performance?",
+        p: "2024-25 Back",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 4,
+        no: "2024BackQ5(a)(ii)",
+        q: "Define Cache Coherence. Why is Cache Coherence important in Multiprocessor Systems?",
+        p: "2024-25 Back",
+        m: 5,
+        d: "Easy"
+      },
+
+      {
+        u: 4,
+        no: "2024BackQ5(b)",
+        q: "Explain Arithmetic Pipelining and Instruction Pipelining with neat diagrams and suitable examples.",
+        p: "2024-25 Back",
+        m: 10,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 4,
+        no: "2024BackQ5(c)",
+        q: "What are the characteristics of a Multiprocessor System with respect to different Interconnection Structures?",
+        p: "2024-25 Back",
+        m: 10,
+        d: "Medium"
+      },
+
+      {
+        u: 4,
+        no: "2023Q1(a)",
+        q: "State about Parallel Processing. Explain Flynn's Classification.",
+        p: "2023-24",
+        m: 5,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 4,
+        no: "2023Q1(d)",
+        q: "State about Pipeline Hazards. Classify different types of Pipeline Hazards.",
+        p: "2023-24",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 4,
+        no: "2023Q2(b)",
+        q: "Point out the issues that occur in Distributed Shared Memory.",
+        p: "2023-24",
+        m: 5,
+        d: "Medium"
+      },
+
+      {
+        u: 4,
+        no: "2023Q2(d)",
+        q: "Define Pipeline. Outline the advantages and disadvantages of Pipelining.",
+        p: "2023-24",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 4,
+        no: "2022Q1(e)",
+        q: "Explain the concept of Parallel Processing and discuss why it is important in Computer Architecture.",
+        p: "2022-23",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 4,
+        no: "2022Q1(f)",
+        q: "What is Pipelining? Draw the diagram for Instruction Pipelining.",
+        p: "2022-23",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 4,
+        no: "2022Q2(c)",
+        q: "Describe the basic principles of Pipelining. Explain Arithmetic Pipeline and RISC Pipeline with suitable examples.",
+        p: "2022-23",
+        m: 5,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 4,
+        no: "2022Q2(f)",
+        q: "Write down the expressions for Speedup Factor in a Pipelined Architecture.",
+        p: "2022-23",
+        m: 5,
+        d: "Medium"
+      },
+
+      {
+        u: 4,
+        no: "2022Q4(b)",
+        q: "Describe the different methods of Interprocessor Arbitration and discuss their suitability for different types of Multiprocessor Systems.",
+        p: "2022-23",
+        m: 10,
+        d: "Hard"
+      },// ========================== UNIT 5 : MEMORY ORGANIZATION ==========================
+
+      {
+        u: 5,
+        no: "2024EvenQ5(a)(i)",
+        q: "Explain the Hierarchical Memory Structure in terms of Speed, Size and Cost.",
+        p: "2024-25 Even",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2024EvenQ5(a)(ii)",
+        q: "A cache memory of 4 blocks is initially empty. For the memory block reference string 4, 5, 7, 12, 4, 5, 13, 4, 5, 7, determine the HIT Ratio using FIFO and LRU Replacement Policies.",
+        p: "2024-25 Even",
+        m: 5,
+        d: "Hard",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2024EvenQ5(b)",
+        q: "Define Locality of Reference. A 16-way Set Associative Cache of size 64 KB is organized into 64-byte blocks. The processor generates a 40-bit address. Each cache tag contains one Valid bit, one Modified bit and two Replacement bits. Calculate the Tag Memory Size.",
+        p: "2024-25 Even",
+        m: 10,
+        d: "Hard",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2024EvenQ5(c)",
+        q: "Explain the Cache Coherence problem. How can Cache Coherence be maintained? Explain with a suitable example.",
+        p: "2024-25 Even",
+        m: 10,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2024BackQ4(a)(i)",
+        q: "What is Memory Hierarchy? Explain its different levels briefly.",
+        p: "2024-25 Back",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2024BackQ4(a)(ii)",
+        q: "Differentiate between RAM and ROM.",
+        p: "2024-25 Back",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2024BackQ4(b)",
+        q: "Explain the organization of Cache Memory. How does Cache Memory improve system performance?",
+        p: "2024-25 Back",
+        m: 10,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2024BackQ4(c)",
+        q: "What is Virtual Memory? Explain how Memory Management Hardware supports Virtual Memory.",
+        p: "2024-25 Back",
+        m: 10,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2023Q2(a)",
+        q: "Calculate the Page Faults for the given reference string using the LRU Page Replacement Algorithm. Frame size = 4, Reference String: 1 2 3 4 2 1 5 6 2 1 2 3 7 6 2 3 1 2 3.",
+        p: "2023-24",
+        m: 5,
+        d: "Hard",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2023Q3(a)(i)",
+        q: "Write a short note on Locality of Reference.",
+        p: "2023-24",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2023Q3(b)",
+        q: "An Address Space is specified by 24 bits and the corresponding Memory Space by 16 bits. (i) Calculate the number of words in the Address Space. (ii) Calculate the number of words in the Memory Space. (iii) If a page consists of 2K words, determine the number of Pages and Blocks in the system.",
+        p: "2023-24",
+        m: 10,
+        d: "Hard"
+      },
+
+      {
+        u: 5,
+        no: "2023Q5(b)",
+        q: "Define Cache Memory. Explain Associative Mapping and Set Associative Mapping with suitable examples.",
+        p: "2023-24",
+        m: 10,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2022Q1(d)",
+        q: "Discuss the Memory Hierarchy in Computer Systems with respect to Speed, Size and Cost.",
+        p: "2022-23",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2022Q2(b)",
+        q: "Explain Virtual Address Mapping using Paging with suitable examples.",
+        p: "2022-23",
+        m: 5,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2022Q2(e)",
+        q: "Explain the significance of Cache Memory.",
+        p: "2022-23",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2022Q3(b)",
+        q: "The Main Memory Access Time of a computer is 60 ns. It is required to reduce the Average Memory Access Time to 20 ns by adding Cache Memory. Determine the required Cache Access Time if the Hit Ratio is 90%.",
+        p: "2022-23",
+        m: 10,
+        d: "Hard"
+      },
+
+      {
+        u: 5,
+        no: "2022Q4(c)",
+        q: "In a computer with Cache Memory, the average CPI without cache misses is 4. Determine the real CPI when the Cache Miss Rate is 10%. Also calculate the CPI when the Hit Ratio is increased to 95%, assuming replacement requires 5 clock cycles for read and 10 clock cycles for write, with each instruction performing an average of two memory accesses of which 20% are writes.",
+        p: "2022-23",
+        m: 10,
+        d: "Hard"
+      },
+
+      {
+        u: 5,
+        no: "2022Q5(b)",
+        q: "Discuss the challenges of Cache Coherence in Distributed Systems. Explain Invalidation-Based and Update-Based Cache Coherence Protocols.",
+        p: "2022-23",
+        m: 10,
+        d: "Hard",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2022Q5(c)(i)",
+        q: "Write a short note on Instruction Pipelining.",
+        p: "2022-23",
+        m: 5,
+        d: "Easy"
+      },// ========================== MOST REPEATED QUESTIONS ==========================
+      // Add repeat:true to these entries (if not already added)
+
+      {
+        u: 1,
+        no: "2024EvenQ1(a)(ii)",
+        q: "Differentiate between RISC and CISC Architecture.",
+        p: "2024-25 Even",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 1,
+        no: "2022Q1(c)",
+        q: "Discuss the advantages and disadvantages of using a RISC Architecture compared to a CISC Architecture.",
+        p: "2022-23",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 1,
+        no: "2024BackQ3(a)(i)",
+        q: "What are Addressing Modes? Explain any two common Addressing Modes.",
+        p: "2024-25 Back",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 1,
+        no: "2022Q5(a)",
+        q: "What are the different Addressing Modes commonly used in processors? Explain each with suitable examples.",
+        p: "2022-23",
+        m: 10,
+        d: "Hard",
+        repeat: true
+      },
+
+      {
+        u: 2,
+        no: "2024EvenQ2(b)",
+        q: "Explain Booth's Multiplication Algorithm with suitable example.",
+        p: "2024-25 Even",
+        m: 10,
+        d: "Hard",
+        repeat: true
+      },
+
+      {
+        u: 2,
+        no: "2023Q5(a)",
+        q: "Show the multiplication process using Booth's Algorithm.",
+        p: "2023-24",
+        m: 10,
+        d: "Hard",
+        repeat: true
+      },
+
+      {
+        u: 2,
+        no: "2024BackQ2(b)",
+        q: "Differentiate between Hardwired Control Unit and Microprogrammed Control Unit.",
+        p: "2024-25 Back",
+        m: 10,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 2,
+        no: "2023Q4(b)",
+        q: "Explain the working of a Microprogram Sequencer with neat block diagram.",
+        p: "2023-24",
+        m: 10,
+        d: "Hard",
+        repeat: true
+      },
+
+      {
+        u: 3,
+        no: "2024EvenQ3(b)",
+        q: "Explain the working of DMA with neat diagram.",
+        p: "2024-25 Even",
+        m: 10,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 3,
+        no: "2023Q4(a)",
+        q: "Explain Burst Transfer, Cycle Stealing and DMA Transfer.",
+        p: "2023-24",
+        m: 10,
+        d: "Hard",
+        repeat: true
+      },
+
+      {
+        u: 3,
+        no: "2024EvenQ3(c)",
+        q: "Define Interrupts. Explain the role of Interrupts in Process State Transitions.",
+        p: "2024-25 Even",
+        m: 10,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 4,
+        no: "2024EvenQ4(c)",
+        q: "Define Pipeline Hazards. Explain different types of Pipeline Hazards.",
+        p: "2024-25 Even",
+        m: 10,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 4,
+        no: "2023Q1(d)",
+        q: "Classify Pipeline Hazards.",
+        p: "2023-24",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 4,
+        no: "2024BackQ5(b)",
+        q: "Explain Arithmetic and Instruction Pipelining with suitable examples.",
+        p: "2024-25 Back",
+        m: 10,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2024BackQ4(b)",
+        q: "Explain Cache Memory Organization. How does Cache improve performance?",
+        p: "2024-25 Back",
+        m: 10,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2023Q5(b)",
+        q: "Explain Associative Mapping and Set Associative Mapping with suitable examples.",
+        p: "2023-24",
+        m: 10,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2024EvenQ5(c)",
+        q: "Explain Cache Coherence and suitable techniques to remove it.",
+        p: "2024-25 Even",
+        m: 10,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2022Q5(b)",
+        q: "Discuss Cache Coherence in Distributed Systems. Explain Invalidation and Update Based Protocols.",
+        p: "2022-23",
+        m: 10,
+        d: "Hard",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2024BackQ4(c)",
+        q: "What is Virtual Memory? Explain how Memory Management Hardware supports Virtual Memory.",
+        p: "2024-25 Back",
+        m: 10,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2022Q2(b)",
+        q: "Explain Virtual Address Mapping using Paging with suitable examples.",
+        p: "2022-23",
+        m: 5,
+        d: "Medium",
+        repeat: true
+      },// ========================== ADDITIONAL COA QUESTIONS (MISSING PYQs) ==========================
+
+      {
+        u: 1,
+        no: "2022Q5(c)",
+        q: "Draw and explain the Flowchart of the Instruction Cycle with a neat diagram.",
+        p: "2022-23",
+        m: 10,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 1,
+        no: "2024BackQ3(b)",
+        q: "Describe the General Register Organization of a Processor with Instruction Execution.",
+        p: "2024-25 Back",
+        m: 10,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 1,
+        no: "2024EvenQ1(a)(i)",
+        q: "Describe the Register Organization in CPU with neat diagram.",
+        p: "2024-25 Even",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 1,
+        no: "2022Q1(b)",
+        q: "Discuss the importance of Instruction Format in Processor Organization including different instruction types and their encoding.",
+        p: "2022-23",
+        m: 5,
+        d: "Medium"
+      },
+
+      // ========================== UNIT 2 ==========================
+
+      {
+        u: 2,
+        no: "2024BackQ1(b)",
+        q: "Design and explain a 4-bit Arithmetic Logic Shift Unit (ALSU).",
+        p: "2024-25 Back",
+        m: 10,
+        d: "Hard"
+      },
+
+      {
+        u: 2,
+        no: "2022Q2(a)",
+        q: "Represent (+46.5)10 as a 32-bit Floating Point Binary Number.",
+        p: "2022-23",
+        m: 5,
+        d: "Hard",
+        repeat: true
+      },
+
+      {
+        u: 2,
+        no: "2023Q2(c)",
+        q: "Explain Floating Point Representation with suitable example.",
+        p: "2023-24",
+        m: 5,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 2,
+        no: "2023Q5(a)",
+        q: "Show the multiplication process of (20) × (-19) using Booth's Algorithm.",
+        p: "2023-24",
+        m: 10,
+        d: "Hard",
+        repeat: true
+      },
+
+      // ========================== UNIT 3 ==========================
+
+      {
+        u: 3,
+        no: "2023Q1(f)",
+        q: "Explain different Modes of Data Transfer.",
+        p: "2023-24",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 3,
+        no: "2023Q2(e)",
+        q: "Explain the need of I/O Addressing. Compare Memory Mapped I/O and I/O Mapped I/O.",
+        p: "2023-24",
+        m: 5,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 3,
+        no: "2023Q1(e)",
+        q: "What is Asynchronous Data Transfer? Explain the Strobe Control Method.",
+        p: "2023-24",
+        m: 5,
+        d: "Easy"
+      },
+
+      {
+        u: 3,
+        no: "2024BackQ3(c)",
+        q: "What is an Input Output Processor (IOP)? How does it differ from a DMA Controller?",
+        p: "2024-25 Back",
+        m: 10,
+        d: "Medium"
+      },
+
+      // ========================== UNIT 4 ==========================
+
+      {
+        u: 4,
+        no: "2022Q2(f)",
+        q: "Write the expression for Speedup Factor in a Pipelined Architecture.",
+        p: "2022-23",
+        m: 5,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 4,
+        no: "2022Q4(b)",
+        q: "Describe different methods of Interprocessor Arbitration and discuss their suitability for different Multiprocessor Systems.",
+        p: "2022-23",
+        m: 10,
+        d: "Hard"
+      },
+
+      {
+        u: 4,
+        no: "2023Q2(b)",
+        q: "Point out the issues that occur in Distributed Shared Memory.",
+        p: "2023-24",
+        m: 5,
+        d: "Medium"
+      },
+
+      {
+        u: 4,
+        no: "2024EvenQ4(a)(ii)",
+        q: "Define Synchronization.",
+        p: "2024-25 Even",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      // ========================== UNIT 5 ==========================
+
+      {
+        u: 5,
+        no: "2022Q2(e)",
+        q: "Explain the significance of Cache Memory.",
+        p: "2022-23",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2024EvenQ5(a)(i)",
+        q: "Explain Hierarchical Memory Organization in terms of Speed, Size and Cost.",
+        p: "2024-25 Even",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2024BackQ4(a)(ii)",
+        q: "Differentiate between RAM and ROM.",
+        p: "2024-25 Back",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2022Q5(b)",
+        q: "Discuss the challenges of Cache Coherence in Distributed Systems. Explain Invalidation-based and Update-based Cache Coherence Protocols.",
+        p: "2022-23",
+        m: 10,
+        d: "Hard",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2024EvenQ5(b)",
+        q: "A 16-way Set Associative Cache of 64 KB is organized into 64-byte blocks. The processor generates a 40-bit address. Each tag contains one Valid bit, one Modified bit and two Replacement bits. Calculate the Tag Memory Size.",
+        p: "2024-25 Even",
+        m: 10,
+        d: "Hard"
+      },// ========================== ADDITIONAL MISSING PYQs (FINAL PASS) ==========================
+
+      {
+        u: 1,
+        no: "2023Q3(c)",
+        q: "Explain Multiple Bus Organization with the help of a neat diagram.",
+        p: "2023-24",
+        m: 10,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 1,
+        no: "2022Q1(f)",
+        q: "What is Pipelining? Draw the diagram for Instruction Pipelining.",
+        p: "2022-23",
+        m: 5,
+        d: "Easy"
+      },
+
+      {
+        u: 2,
+        no: "2024EvenQ2(b)",
+        q: "Using Booth's Multiplication Algorithm, determine the recoded multiplier and final product for (-7) × (-3) considering both operands as 4-bit signed numbers.",
+        p: "2024-25 Even",
+        m: 10,
+        d: "Hard",
+        repeat: true
+      },
+
+      {
+        u: 2,
+        no: "2022Q3(c)",
+        q: "Differentiate between a Microprocessor and a Microprogram.",
+        p: "2022-23",
+        m: 10,
+        d: "Medium"
+      },
+
+      {
+        u: 3,
+        no: "2024EvenQ3(a)",
+        q: "Define USB. Explain the features and applications of Universal Serial Bus (USB).",
+        p: "2024-25 Even",
+        m: 5,
+        d: "Easy"
+      },
+
+      {
+        u: 3,
+        no: "2023Q4(a)",
+        q: "Explain Burst Transfer, Cycle Stealing and Transparent DMA with suitable diagrams.",
+        p: "2023-24",
+        m: 10,
+        d: "Hard",
+        repeat: true
+      },
+
+      {
+        u: 3,
+        no: "2022Q5(c)",
+        q: "Write short notes on I/O Interface.",
+        p: "2022-23",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 4,
+        no: "2022Q2(c)",
+        q: "Describe the basic principles of Arithmetic Pipeline and RISC Pipeline with suitable examples.",
+        p: "2022-23",
+        m: 5,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 4,
+        no: "2024BackQ5(a)",
+        q: "Explain how Instruction Pipelining improves processor performance.",
+        p: "2024-25 Back",
+        m: 5,
+        d: "Easy",
+        repeat: true
+      },
+
+      {
+        u: 4,
+        no: "2024EvenQ4(b)",
+        q: "A five-stage instruction pipeline has stage delays of 180 ns, 250 ns, 150 ns, 170 ns and 250 ns. If latch delay is 10 ns, calculate the execution time of 1000 instructions assuming no hazards.",
+        p: "2024-25 Even",
+        m: 10,
+        d: "Hard",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2024EvenQ5(a)",
+        q: "Using FIFO and LRU Replacement Policies, calculate the HIT Ratio for the reference string 4,5,7,12,4,5,13,4,5,7 assuming cache size is four blocks.",
+        p: "2024-25 Even",
+        m: 10,
+        d: "Hard",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2023Q5(b)",
+        q: "Explain Direct Mapping, Associative Mapping and Set Associative Mapping techniques used in Cache Memory with suitable examples.",
+        p: "2023-24",
+        m: 10,
+        d: "Medium",
+        repeat: true
+      },
+
+      {
+        u: 5,
+        no: "2022Q4(c)",
+        q: "A processor has CPI = 4 in the absence of cache misses. Determine the real CPI when the cache miss rate is 10%. Also calculate the new CPI when the hit ratio becomes 95%, considering read and write penalties.",
+        p: "2022-23",
+        m: 10,
+        d: "Hard"
+      },
+
+      {
+        u: 5,
+        no: "2022Q3(b)",
+        q: "Main memory access time is 60 ns. Determine the required Cache Access Time to obtain an average access time of 20 ns if the cache hit ratio is 90%.",
+        p: "2022-23",
+        m: 10,
+        d: "Hard"
+      },
+
+      {
+        u: 5,
+        no: "2024BackQ4(b)",
+        q: "Explain the organization of Cache Memory. How does Cache Memory improve the overall performance of a Computer System?",
+        p: "2024-25 Back",
+        m: 10,
+        d: "Medium",
+        repeat: true
+      }]
+    const grid = document.getElementById("grid");
+    const empty = document.getElementById("empty");
+
+    const search = document.getElementById("search");
+
+    const pageTitle = document.getElementById("pageTitle");
+
+    let currentUnit = "all";
+    let currentDifficulty = "all";
+
+
+    // ======================================================
+    // COUNTS
+    // ======================================================
+
+    document.getElementById("allCount").innerText = Q.length;
+
+    document.getElementById("repeatCount").innerText =
+      Q.filter(x => x.repeat).length;
+
+    for (let i = 1; i <= 5; i++) {
+
+      document.getElementById("u" + i).innerText =
+        Q.filter(x => x.u == i).length;
+
+    }
+
+
+    // ======================================================
+    // BADGE
+    // ======================================================
+
+    function difficultyClass(d) {
+
+      if (d === "Easy") return "easy";
+
+      if (d === "Medium") return "medium";
+
+      return "hard";
+
+    }
+
+
+    // ======================================================
+    // CARD
+    // ======================================================
+
+    function card(q) {
+
+      return `
+
+<div class="card">
+
+<div class="badges">
+
+<span class="badge unit">
+Unit ${q.u}
+</span>
+
+<span class="badge ${difficultyClass(q.d)}">
+
+${q.d}
+
+</span>
+
+${q.repeat
+          ?
+
+          `<span class="badge repeat">
+
+🔥 Repeated
+
+</span>`
+
+          :
+
+          ""
+
+        }
+
+</div>
+
+<div class="qno">
+
+${q.no}
+
+</div>
+
+<div class="question">
+
+${q.q}
+
+</div>
+
+<div class="footer">
+
+<span>
+
+${q.p}
+
+</span>
+
+<span>
+
+${q.m} Marks
+
+</span>
+
+</div>
+
+</div>
+
+`;
+
+    }
+
+
+    // ======================================================
+    // RENDER
+    // ======================================================
+
+    function render(list) {
+
+      grid.innerHTML = "";
+
+      if (list.length == 0) {
+
+        empty.style.display = "block";
+
+        return;
+
+      }
+
+      empty.style.display = "none";
+
+      grid.innerHTML =
+
+        list.map(card).join("");
+
+    }
+
+
+    // ======================================================
+    // FILTERS
+    // ======================================================
+
+    function getFilteredData() {
+
+      let data = [...Q];
+
+
+      // Unit
+
+      if (currentUnit === "repeat") {
+
+        data = data.filter(x => x.repeat);
+
+      }
+
+      else if (currentUnit !== "all") {
+
+        data = data.filter(
+
+          x => x.u == currentUnit
+
+        );
+
+      }
+
+
+      // Difficulty
+
+      if (currentDifficulty !== "all") {
+
+        if (
+
+          currentDifficulty == "5"
+
+          ||
+
+          currentDifficulty == "10"
+
+        ) {
+
+          data = data.filter(
+
+            x => x.m == currentDifficulty
+
+          );
+
+        }
+
+        else {
+
+          data = data.filter(
+
+            x => x.d == currentDifficulty
+
+          );
+
+        }
+
+      }
+
+
+      // Search
+
+      const keyword =
+
+        search.value
+
+          .toLowerCase()
+
+          .trim();
+
+      if (keyword != "") {
+
+        data = data.filter(q =>
+
+          q.q.toLowerCase().includes(keyword)
+
+          ||
+
+          q.no.toLowerCase().includes(keyword)
+
+          ||
+
+          q.p.toLowerCase().includes(keyword)
+
+        );
+
+      }
+
+      return data;
+
+    }
+
+
+    // ======================================================
+    // UPDATE
+    // ======================================================
+
+    function update() {
+
+      render(
+
+        getFilteredData()
+
+      );
+
+    }
+    // ======================================================
+    // SIDEBAR FILTERS
+    // ======================================================
+
+    document
+      .querySelectorAll(".nav-item")
+      .forEach(item => {
+
+        item.onclick = () => {
+
+          document
+            .querySelectorAll(".nav-item")
+            .forEach(x => x.classList.remove("active"));
+
+          item.classList.add("active");
+
+          currentUnit = item.dataset.filter;
+
+          switch (currentUnit) {
+
+            case "all":
+
+              pageTitle.innerText = "All Questions";
+
+              break;
+
+            case "repeat":
+
+              pageTitle.innerText = "Most Repeated Questions";
+
+              break;
+
+            default:
+
+              pageTitle.innerText =
+                `Unit ${currentUnit} Questions`;
+
+          }
+
+          update();
+
+        };
+
+      });
+
+
+    // ======================================================
+    // TOOLBAR FILTERS
+    // ======================================================
+
+    document
+      .querySelectorAll(".chip")
+      .forEach(chip => {
+
+        chip.onclick = () => {
+
+          document
+            .querySelectorAll(".chip")
+            .forEach(x => x.classList.remove("active"));
+
+          chip.classList.add("active");
+
+          currentDifficulty =
+
+            chip.dataset.chip;
+
+          update();
+
+        };
+
+      });
+
+
+    // ======================================================
+    // LIVE SEARCH
+    // ======================================================
+
+    search.addEventListener(
+
+      "input",
+
+      () => {
+
+        update();
+
+      }
+
+    );
+
+
+    // ======================================================
+    // SORTING
+    // ======================================================
+
+    Q.sort((a, b) => {
+
+      if (a.u !== b.u)
+
+        return a.u - b.u;
+
+      return a.no.localeCompare(b.no);
+
+    });
+
+
+    // ======================================================
+    // SIDEBAR TOGGLE (MOBILE)
+    // ======================================================
+
+    const sidebarEl = document.querySelector('aside');
+    const overlayEl = document.getElementById('overlay');
+    const hamburgerBtn = document.getElementById('hamburger');
+
+    hamburgerBtn.addEventListener('click', () => {
+      sidebarEl.classList.toggle('open');
+      overlayEl.classList.toggle('show');
+    });
+
+    overlayEl.addEventListener('click', () => {
+      sidebarEl.classList.remove('open');
+      overlayEl.classList.remove('show');
+    });
+
+    // Auto-close sidebar when nav item clicked on mobile
+    document.querySelectorAll('.nav-item').forEach(item => {
+      item.addEventListener('click', () => {
+        if (window.innerWidth <= 900) {
+          sidebarEl.classList.remove('open');
+          overlayEl.classList.remove('show');
+        }
+      });
+    });
+
+
+    // ======================================================
+    // GOOGLE SHEETS VISITOR TRACKER
+    // ======================================================
+    //
+    // SETUP KARNE KA TARIKA:
+    // 1. Apna Google Sheet open karo
+    // 2. Extensions → Apps Script → naya script kholo
+    // 3. Neeche wala code paste karo:
+    //
+    //    function doPost(e) {
+    //      var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    //      var data = JSON.parse(e.postData.contents);
+    //      sheet.appendRow([
+    //        data.timestamp, data.event, data.extra,
+    //        data.userAgent, data.page, data.referrer
+    //      ]);
+    //      return ContentService.createTextOutput('OK');
+    //    }
+    //
+    // 4. Deploy → New deployment → Web App
+    //    Execute as: Me | Who has access: Anyone
+    // 5. Copy the Web App URL aur neeche paste karo
+
+    const SHEETS_URL = 'https://script.google.com/macros/s/AKfycby1sTfx7WVHnB0TSICBetOVEvRy-WmaTK_gJaidgmYgr48-MiLvS57fHDTxtWV86GKuLw/exec';
+
+    function logToSheets(event, extra, name, phone) {
+      if (!SHEETS_URL || SHEETS_URL === 'YOUR_APPS_SCRIPT_URL') return;
+      const data = {
+        timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+        event: event || 'page_view',
+        extra: extra || '',
+        name: name || '',
+        phone: phone || '',
+        userAgent: navigator.userAgent.substring(0, 120),
+        page: document.title,
+        referrer: document.referrer || 'direct'
+      };
+      fetch(SHEETS_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).catch(() => { }); // Silent fail
+    }
+
+    // Page load hone par log karo
+    logToSheets('page_view');
+
+
+    // ======================================================
+    // RAZORPAY PAYMENT GATE — Rs.10 Lifetime Access
+    // ======================================================
+    //
+    // SETUP: Razorpay Dashboard → Settings → API Keys
+    // Test key: rzp_test_XXXXXXXX
+    // Live key: rzp_live_XXXXXXXX
+
+    // ======================================================
+    // PAYMENT GATE — Razorpay.me Payment Link
+    // ======================================================
+    // No API keys needed! Payment link se kaam chalega.
+    // Flow: Pay button → Razorpay.me link opens → User enters Transaction ID → Access granted
+
+    const PAYMENT_LINK = 'https://razorpay.me/@ujjwalsrivastava?amount=10';
+    const ACCESS_KEY = 'coa_pyq_access_v1';
+
+    const payOverlay = document.getElementById('payOverlay');
+    const payBtn = document.getElementById('payBtn');
+    const payStep2 = document.getElementById('payStep2');
+    const txnInput = document.getElementById('txnInput');
+    const verifyBtn = document.getElementById('verifyBtn');
+
+    function checkAccess() {
+      if (localStorage.getItem(ACCESS_KEY) === 'granted') {
+        payOverlay.style.display = 'none';
+      }
+    }
+
+    function grantAccess(txnId, name, phone) {
+      localStorage.setItem(ACCESS_KEY, 'granted');
+      if (txnId) localStorage.setItem('coa_txn_id', txnId);
+      if (name) localStorage.setItem('coa_user_name', name);
+      if (phone) localStorage.setItem('coa_user_phone', phone);
+      // Smooth fade out
+      payOverlay.style.transition = 'opacity .4s';
+      payOverlay.style.opacity = '0';
+      setTimeout(() => { payOverlay.style.display = 'none'; payOverlay.style.opacity = '1'; }, 400);
+      logToSheets('payment_success', txnId, name, phone);
+    }
+
+    // Payment anchor link — update style after click to show it was opened
+    payBtn.addEventListener('click', function () {
+      setTimeout(() => {
+        payBtn.textContent = '\u2713 Razorpay Opened \u2014 Complete payment & come back';
+        payBtn.style.background = 'linear-gradient(135deg, #f59e0b, #d97706)';
+        payBtn.style.boxShadow = '0 8px 24px rgba(245,158,11,.4)';
+        payBtn.style.opacity = '0.9';
+      }, 200);
+    });
+
+    // Step 2: Collect name, phone, transaction ID — then grant access
+    const nameInput = document.getElementById('nameInput');
+    const phoneInput = document.getElementById('phoneInput');
+
+    function markError(el, msg) {
+      el.style.borderColor = '#ef4444';
+      el.style.boxShadow = '0 0 0 3px rgba(239,68,68,.15)';
+      el.placeholder = msg;
+      el.focus();
+    }
+    function markOk(el) {
+      el.style.borderColor = '#10b981';
+      el.style.boxShadow = '0 0 0 3px rgba(16,185,129,.15)';
+    }
+
+    verifyBtn.addEventListener('click', function () {
+      const name = nameInput.value.trim();
+      const phone = phoneInput.value.trim();
+      const txn = txnInput.value.trim();
+
+      if (!name || name.length < 2) {
+        markError(nameInput, '\u26a0\ufe0f Apna naam daalo');
+        return;
+      }
+      if (!phone || phone.replace(/\D/g, '').length < 10) {
+        markError(phoneInput, '\u26a0\ufe0f Valid 10-digit WhatsApp number daalo');
+        return;
+      }
+      if (!txn || txn.length < 4) {
+        markError(txnInput, '\u26a0\ufe0f Transaction ID daalo');
+        return;
+      }
+
+      markOk(nameInput); markOk(phoneInput); markOk(txnInput);
+      verifyBtn.innerHTML = '&#9203; Verifying...';
+      verifyBtn.disabled = true;
+
+      setTimeout(() => grantAccess(txn, name, phone), 700);
+    });
+
+    // Reset input styles on type + Enter key shortcut
+    [nameInput, phoneInput, txnInput].forEach(inp => {
+      inp.addEventListener('input', () => {
+        inp.style.borderColor = '#d1d5db';
+        inp.style.boxShadow = 'none';
+      });
+      inp.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') verifyBtn.click();
+      });
+    });
+
+    // Page load par check karo — already paid hai to seedha andar jao
+    checkAccess();
+
+
+    // ======================================================
+    // INITIAL RENDER
+    // ======================================================
+
+    update();
+
+
+    // ======================================================
+    // FINAL AUDIT
+    // ======================================================
+
+    console.group(
+
+      "COA QUESTION BANK"
+
+    );
+
+    console.log(
+
+      "TOTAL QUESTIONS :",
+
+      Q.length
+
+    );
+
+    console.log(
+
+      "REPEATED :",
+
+      Q.filter(x => x.repeat).length
+
+    );
+
+    for (let i = 1; i <= 5; i++) {
+
+      console.log(
+
+        `UNIT ${i} :`,
+
+        Q.filter(x => x.u == i).length
+
+      );
+
+    }
+
+    console.groupEnd();
+
+
+    // ======================================================
+    // OPTIONAL FUNCTIONS
+    // ======================================================
+
+    function exportUnit(unit) {
+
+      return Q.filter(
+
+        x => x.u == unit
+
+      );
+
+    }
+
+    function exportRepeated() {
+
+      return Q.filter(
+
+        x => x.repeat
+
+      );
+
+    }
+
+    function exportEasy() {
+
+      return Q.filter(
+
+        x => x.d === "Easy"
+
+      );
+
+    }
+
+    function exportMedium() {
+
+      return Q.filter(
+
+        x => x.d === "Medium"
+
+      );
+
+    }
+
+    function exportHard() {
+
+      return Q.filter(
+
+        x => x.d === "Hard"
+
+      );
+
+    }
+
+
+    // ======================================================
+    // KEYBOARD SHORTCUTS
+    // ======================================================
+
+    window.addEventListener(
+
+      "keydown",
+
+      e => {
+
+        if (
+
+          e.ctrlKey
+
+          &&
+
+          e.key === "/"
+
+        ) {
+
+          e.preventDefault();
+
+          search.focus();
+
+        }
+
+      });
+
+
+    // ======================================================
+    // END
+    // ======================================================
+
+  </script>
+
+</body>
+
+</html>
