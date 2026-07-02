@@ -950,8 +950,8 @@ MAIN
       <div class="pay-amount"><sup>&#8377;</sup>10 <small>one-time</small></div>
 
       <!-- Anchor tag (not button) so popup blocker doesn't interfere -->
-      <a class="pay-btn" id="payBtn" href="https://razorpay.me/@ujjwalsrivastava" target="_blank"
-        rel="noopener" style="display:block; text-decoration:none;">
+      <a class="pay-btn" id="payBtn" href="https://razorpay.me/@ujjwalsrivastava" target="_blank" rel="noopener"
+        style="display:block; text-decoration:none;">
         &#128275; Pay &#8377;10 via Razorpay
       </a>
 
@@ -3006,6 +3006,39 @@ ${q.m} Marks
       el.style.boxShadow = '0 0 0 3px rgba(16,185,129,.15)';
     }
 
+    // ======================================================
+    // PROFANITY FILTER — Gaali likhi to block
+    // ======================================================
+    const BANNED_WORDS = [
+      // Hindi gaalis (romanized)
+      'madarchod','maderchod','madarjat','maadar','bhenchod','behenchod','behen ke',
+      'maa ke','maa ki','teri maa','teri behen','bc','mc','bkl','mfkr',
+      'chutiya','chutiye','chut','bhosdike','bhosdika','bhosda','bhosdi','bhosd',
+      'harami','randi','randwa','bhadwa','bhadwe','rande','gandu','gaand','gand',
+      'lodu','laude','lauda','lawda','lund','lun','landi',
+      'kamina','kamine','kutte','kuttiya','ullu','saale','saali','kamine',
+      'madhar','sala gandu','bkl','mkc','lmao chut','chutad',
+      // English
+      'fuck','fucker','fucking','motherfucker','mf','wtf',
+      'shit','bullshit','bitch','asshole','bastard',
+      'dick','cock','pussy','cunt','tits','boobs',
+      'whore','slut','nigger','nigga','porn','nude','naked','sex'
+    ];
+
+    function containsProfanity(text) {
+      if (!text) return false;
+      const lower = text.toLowerCase().trim();
+      return BANNED_WORDS.some(word => {
+        try {
+          const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          return new RegExp('(^|[\\s,.]|\\b)' + escaped + '([\\s,.]|\\b|$)', 'i').test(lower)
+                 || lower.includes(word);
+        } catch (e) {
+          return lower.includes(word);
+        }
+      });
+    }
+
     verifyBtn.addEventListener('click', function () {
       const name = nameInput.value.trim();
       const phone = phoneInput.value.trim();
@@ -3013,6 +3046,11 @@ ${q.m} Marks
 
       if (!name || name.length < 2) {
         markError(nameInput, '\u26a0\ufe0f Apna naam daalo');
+        return;
+      }
+      if (containsProfanity(name)) {
+        markError(nameInput, '\ud83d\udeab Gaali mat likho bhai, seedha naam daalo');
+        nameInput.value = ''; // Clear the field
         return;
       }
       if (!phone || phone.replace(/\D/g, '').length < 10) {
@@ -3036,6 +3074,14 @@ ${q.m} Marks
       inp.addEventListener('input', () => {
         inp.style.borderColor = '#d1d5db';
         inp.style.boxShadow = 'none';
+        // Real-time gaali detection on name field
+        if (inp === nameInput && containsProfanity(inp.value)) {
+          inp.style.borderColor = '#ef4444';
+          inp.style.boxShadow = '0 0 0 3px rgba(239,68,68,.15)';
+          inp.style.background = '#fff5f5';
+        } else if (inp === nameInput) {
+          inp.style.background = '#fff';
+        }
       });
       inp.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') verifyBtn.click();
